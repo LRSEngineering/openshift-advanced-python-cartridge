@@ -25,6 +25,15 @@ function start_gunicorn() {
     nohup gunicorn -c $OPENSHIFT_ADVANCED_PYTHON_DIR/conf/gunicorn.py app:application > "$OPENSHIFT_ADVANCED_PYTHON_DIR/logs/appserver.log" 2>&1
 }
 
+function start_luigid() {
+    luigid \
+        --background \
+        --pidfile "$OPENSHIFT_ADVANCED_PYTHON_DIR/run/appserver.pid" \
+        --logdir "$OPENSHIFT_ADVANCED_PYTHON_DIR/logs" \
+        --state-path "$OPENSHIFT_ADVANCED_PYTHON_DIR/run/state.pickle" \
+        --unix-socket "$OPENSHIFT_ADVANCED_PYTHON_DIR/run/appserver.sock"
+}
+
 
 function start() {
     echo "Starting PYTHON cart"
@@ -48,6 +57,9 @@ function start() {
             ;;
         gunicorn)
             start_gunicorn
+            ;;
+        luigid)
+            start_luigid
             ;;
     esac
 }
