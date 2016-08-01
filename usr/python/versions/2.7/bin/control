@@ -129,6 +129,9 @@ function build_server() {
         gunicorn)
             pip install gevent gunicorn
             ;;
+	luigid)
+            pip install luigi
+	    ;;
     esac
 
     echo $OPENSHIFT_PYTHON_SERVER > env/OPENSHIFT_PYTHON_RUNNING_SERVER
