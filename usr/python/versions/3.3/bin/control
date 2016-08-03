@@ -117,7 +117,7 @@ function build_server() {
         gunicorn)
             pip install --no-cache-dir gevent gunicorn
             ;;
-	luigi)
+	luigid)
             pip install --no-cache-dir luigi
 	    ;;
     esac
